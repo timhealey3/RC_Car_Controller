@@ -1,26 +1,24 @@
 import org.java_websocket.WebSocket
 import org.java_websocket.handshake.ClientHandshake
 import org.java_websocket.server.WebSocketServer
-import websocket.MessageScheme
 import java.net.InetSocketAddress
 import kotlin.concurrent.timer
 import com.google.gson.Gson
-import websocket.Status
+import websocket.*
 
 class SimpleWebSocketServer : WebSocketServer(InetSocketAddress(8090)) {
     private val gson = Gson()
-    private var message = MessageScheme(Status.OFF, "", "")
+    private var message = MessageScheme(CarStatus.OFF, ForwardStatus.NONE, TurnStatus.NONE)
 
     // This is called when a client connects to the server
     override fun onOpen(conn: WebSocket?, handshake: ClientHandshake?) {
         println("Client connected: ${conn?.remoteSocketAddress}")
 
         // start car
-        message.status = Status.START
+        message.status = CarStatus.START
         val jsonMessageTwo = gson.toJson(message)
         conn?.send(jsonMessageTwo)
 
-        startSendingMessages()
     }
 
     override fun onMessage(conn: WebSocket?, message: String?) {
@@ -39,20 +37,15 @@ class SimpleWebSocketServer : WebSocketServer(InetSocketAddress(8090)) {
         println("WebSocket server started!")
     }
 
-    // Send messages to all connected clients at regular intervals
-    private fun startSendingMessages() {
-        println("message attempted")
-        // Timer that sends a message every 5 seconds (5000 ms)
-        timer(period = 5000) {
-            // Send a message to all connected clients
-            connections.forEach { conn ->
-                if (conn.isOpen) {
-                    message.status = Status.CONTINUE
-                    message.forward = "w"
-                    message.turn = "s"
-                    val jsonMessage = gson.toJson(message)
-                    conn.send(jsonMessage)
-                }
+    fun sendMessage(message: MessageScheme) {
+        println("send message $message")
+        connections.forEach { connection ->
+            if (connection.isOpen) {
+                message.status = CarStatus.NONE
+                message.forward = ForwardStatus.FORWARD
+                message.turn = TurnStatus.LEFT
+                val jsonMessage = gson.toJson(message)
+                connection.send(jsonMessage)
             }
         }
     }

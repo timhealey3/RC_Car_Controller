@@ -1,13 +1,25 @@
 package websocket
 
-enum class Status {
+enum class CarStatus {
     START,
-    CONTINUE,
-    OFF
+    OFF,
+    NONE
+}
+
+enum class ForwardStatus {
+    FORWARD,
+    BACKWARD,
+    NONE
+}
+
+enum class TurnStatus {
+    LEFT,
+    RIGHT,
+    NONE
 }
 
 data class MessageScheme(
-    var status: Status,
-    var forward: String,
-    var turn: String
+    var status: CarStatus,
+    var forward: ForwardStatus,
+    var turn: TurnStatus
 )
