@@ -20,7 +20,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.6.1")
     implementation("org.slf4j:slf4j-simple:1.6.1")
     implementation("com.google.code.gson:gson:2.8.9")
-    implementation(compose.desktop.windows_x64)
+    implementation(compose.desktop.currentOs)
     testImplementation(kotlin("test"))
 }
 
@@ -29,5 +29,5 @@ tasks.test {
 }
 
 kotlin {
-    jvmToolchain(11) // Set JVM version to 11 (or choose 17, 22 for later Java versions)
+    jvmToolchain(11)
 }

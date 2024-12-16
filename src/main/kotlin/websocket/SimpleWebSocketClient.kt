@@ -16,8 +16,8 @@ class SimpleWebSocketServer : WebSocketServer(InetSocketAddress(8090)) {
 
         // start car
         message.status = CarStatus.START
-        val jsonMessageTwo = gson.toJson(message)
-        conn?.send(jsonMessageTwo)
+        val jsonMessage = gson.toJson(message)
+        conn?.send(jsonMessage)
 
     }
 
