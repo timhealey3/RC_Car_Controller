@@ -22,6 +22,7 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.9")
     implementation(compose.desktop.currentOs)
     testImplementation(kotlin("test"))
+    testImplementation("org.mockito:mockito-core:3.+")
 }
 
 tasks.test {

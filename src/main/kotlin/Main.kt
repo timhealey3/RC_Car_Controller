@@ -1,4 +1,4 @@
-import ControllApp.ControlApp
+import ControlApp.ControlApp
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 
