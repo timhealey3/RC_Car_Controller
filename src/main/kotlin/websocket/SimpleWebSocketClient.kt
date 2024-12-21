@@ -36,12 +36,9 @@ class SimpleWebSocketServer : WebSocketServer(InetSocketAddress(8090)) {
     }
 
     fun sendMessage(message: MessageScheme) {
-        println("Sent Status=${message.status} Forward=${message.forward} Message=${message.turn}")
+        println("Sent Status=${message.status} Forward=${message.forward} turn=${message.turn}")
         connections.forEach { connection ->
             if (connection.isOpen) {
-                message.status = CarStatus.NONE
-                message.forward = ForwardStatus.FORWARD
-                message.turn = TurnStatus.LEFT
                 val jsonMessage = gson.toJson(message)
                 connection.send(jsonMessage)
             }

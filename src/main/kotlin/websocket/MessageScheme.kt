@@ -3,6 +3,9 @@ package websocket
 enum class CarStatus {
     START,
     OFF,
+    AUTO,
+    TRAINING,
+    MANUAL,
     NONE
 }
 
