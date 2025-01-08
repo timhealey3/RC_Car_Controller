@@ -3,8 +3,10 @@ package ControlApp
 import SimpleWebSocketServer
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
-
-import websocket.*
+import websocket.CarStatus
+import websocket.ForwardStatus
+import websocket.MessageScheme
+import websocket.TurnStatus
 
 enum class InputStatus {
     LEFT,
@@ -40,16 +42,16 @@ class Control {
             var color: Color = Color.LightGray
             if (selected) {
                 color = when (direction) {
-                InputStatus.LEFT -> Color.Blue
-                InputStatus.RIGHT -> Color.Blue
-                InputStatus.FORWARD -> Color.Blue
-                InputStatus.BACKWARD -> Color.Blue
-                InputStatus.OFF -> Color.Red
-                InputStatus.AUTO -> Color.Red
-                InputStatus.MANUAL -> Color.Red
-                InputStatus.TRAINING -> Color.Red
-                InputStatus.NONE -> Color.Red
-            }
+                    InputStatus.LEFT -> Color.Blue
+                    InputStatus.RIGHT -> Color.Blue
+                    InputStatus.FORWARD -> Color.Blue
+                    InputStatus.BACKWARD -> Color.Blue
+                    InputStatus.OFF -> Color.Red
+                    InputStatus.AUTO -> Color.Red
+                    InputStatus.MANUAL -> Color.Red
+                    InputStatus.TRAINING -> Color.Red
+                    InputStatus.NONE -> Color.Red
+                }
             }
             return color
         }

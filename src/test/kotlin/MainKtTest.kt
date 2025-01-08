@@ -7,7 +7,7 @@ class MainKtTest {
     private val server = SimpleWebSocketServer()
 
     @Test
-    fun testWebsocket(){
+    fun testWebsocket() {
         // test websocket opens correctly
         val expectedPost = 8090
         assertEquals(expectedPost, server.port)

@@ -1,6 +1,7 @@
 plugins {
     kotlin("jvm") version "1.8.0"
     id("org.jetbrains.compose") version "1.5.0"
+    id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
 }
 
 group = "org.example"
@@ -20,6 +21,7 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.6.1")
     implementation("org.slf4j:slf4j-simple:1.6.1")
     implementation("com.google.code.gson:gson:2.8.9")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
     implementation(compose.desktop.currentOs)
     testImplementation(kotlin("test"))
     testImplementation("org.mockito:mockito-core:3.+")

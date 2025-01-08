@@ -21,6 +21,13 @@ class SimpleWebSocketServer : WebSocketServer(InetSocketAddress(8090)) {
 
     override fun onMessage(conn: WebSocket?, message: String?) {
         println("Received message: $message")
+        try {
+            val teleEntity = gson.fromJson(message, TelemetryEntity::class.java)
+            println("Received telemetry data: $teleEntity")
+        } catch (e: Exception) {
+            println("Could not be converted to telemetry data: $message")
+            e.printStackTrace()
+        }
     }
 
     override fun onClose(conn: WebSocket?, code: Int, reason: String?, remote: Boolean) {
