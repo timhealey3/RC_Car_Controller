@@ -8,7 +8,7 @@ import data_classes.*
 class SimpleWebSocketServer : WebSocketServer(InetSocketAddress(8090)) {
     private val gson = Gson()
     private var message = MessageScheme(CarStatus.OFF, ForwardStatus.NONE, TurnStatus.NONE)
-
+    var teleEntity: TelemetryEntity? = null
     // This is called when a client connects to the server
     override fun onOpen(conn: WebSocket?, handshake: ClientHandshake?) {
         println("Client connected: ${conn?.remoteSocketAddress}")
@@ -16,13 +16,13 @@ class SimpleWebSocketServer : WebSocketServer(InetSocketAddress(8090)) {
         message.status = CarStatus.START
         val jsonMessage = gson.toJson(message)
         conn?.send(jsonMessage)
-
     }
 
     override fun onMessage(conn: WebSocket?, message: String?) {
         println("Received message: $message")
         try {
-            val teleEntity = gson.fromJson(message, TelemetryEntity::class.java)
+            teleEntity = gson.fromJson(message, TelemetryEntity::class.java)
+
             println("Received telemetry data: $teleEntity")
         } catch (e: Exception) {
             println("Could not be converted to telemetry data: $message")
