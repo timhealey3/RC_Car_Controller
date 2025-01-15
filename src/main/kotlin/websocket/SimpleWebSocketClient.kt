@@ -3,7 +3,7 @@ import org.java_websocket.handshake.ClientHandshake
 import org.java_websocket.server.WebSocketServer
 import java.net.InetSocketAddress
 import com.google.gson.Gson
-import websocket.*
+import data_classes.*
 
 class SimpleWebSocketServer : WebSocketServer(InetSocketAddress(8090)) {
     private val gson = Gson()

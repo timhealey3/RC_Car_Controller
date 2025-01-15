@@ -1,4 +1,4 @@
-package websocket
+package data_classes
 
 data class TelemetryEntity(
     val on: Boolean,

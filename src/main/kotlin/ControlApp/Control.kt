@@ -1,24 +1,7 @@
 package ControlApp
 
 import SimpleWebSocketServer
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
-import websocket.CarStatus
-import websocket.ForwardStatus
-import websocket.MessageScheme
-import websocket.TurnStatus
-
-enum class InputStatus {
-    LEFT,
-    RIGHT,
-    FORWARD,
-    BACKWARD,
-    OFF,
-    AUTO,
-    MANUAL,
-    TRAINING,
-    NONE
-}
+import data_classes.*
 
 class Control {
     companion object {
@@ -27,7 +10,7 @@ class Control {
                 InputStatus.LEFT -> MessageScheme(CarStatus.NONE, ForwardStatus.NONE, TurnStatus.LEFT)
                 InputStatus.RIGHT -> MessageScheme(CarStatus.NONE, ForwardStatus.NONE, TurnStatus.RIGHT)
                 InputStatus.FORWARD -> MessageScheme(CarStatus.NONE, ForwardStatus.FORWARD, TurnStatus.NONE)
-                InputStatus.BACKWARD -> MessageScheme(CarStatus.NONE, ForwardStatus.BACKWARD, TurnStatus.LEFT)
+                InputStatus.BACKWARD -> MessageScheme(CarStatus.NONE, ForwardStatus.BACKWARD, TurnStatus.NONE)
                 InputStatus.OFF -> MessageScheme(CarStatus.OFF, ForwardStatus.NONE, TurnStatus.NONE)
                 InputStatus.AUTO -> MessageScheme(CarStatus.AUTO, ForwardStatus.NONE, TurnStatus.NONE)
                 InputStatus.MANUAL -> MessageScheme(CarStatus.MANUAL, ForwardStatus.NONE, TurnStatus.NONE)
@@ -35,25 +18,6 @@ class Control {
                 InputStatus.NONE -> MessageScheme(CarStatus.NONE, ForwardStatus.NONE, TurnStatus.NONE)
             }
             server.sendMessage(message)
-        }
-
-        @Composable
-        fun setColor(direction: InputStatus, selected: Boolean): Color {
-            var color: Color = Color.LightGray
-            if (selected) {
-                color = when (direction) {
-                    InputStatus.LEFT -> Color.Blue
-                    InputStatus.RIGHT -> Color.Blue
-                    InputStatus.FORWARD -> Color.Blue
-                    InputStatus.BACKWARD -> Color.Blue
-                    InputStatus.OFF -> Color.Red
-                    InputStatus.AUTO -> Color.Red
-                    InputStatus.MANUAL -> Color.Red
-                    InputStatus.TRAINING -> Color.Red
-                    InputStatus.NONE -> Color.Red
-                }
-            }
-            return color
         }
     }
 }
