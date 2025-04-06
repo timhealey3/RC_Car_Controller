@@ -13,6 +13,7 @@ fun ColorSelector(direction: InputStatus, selected: Boolean): Color {
             InputStatus.RIGHT -> Color.Blue
             InputStatus.FORWARD -> Color.Blue
             InputStatus.BACKWARD -> Color.Blue
+            InputStatus.STRAIGHTEN -> Color.Blue
             InputStatus.OFF -> Color.Red
             InputStatus.AUTO -> Color.Red
             InputStatus.MANUAL -> Color.Red

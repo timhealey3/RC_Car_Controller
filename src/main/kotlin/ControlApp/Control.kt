@@ -11,6 +11,7 @@ class Control {
                 InputStatus.RIGHT -> MessageScheme(CarStatus.NONE, ForwardStatus.NONE, TurnStatus.RIGHT)
                 InputStatus.FORWARD -> MessageScheme(CarStatus.NONE, ForwardStatus.FORWARD, TurnStatus.NONE)
                 InputStatus.BACKWARD -> MessageScheme(CarStatus.NONE, ForwardStatus.BACKWARD, TurnStatus.NONE)
+                InputStatus.STRAIGHTEN -> MessageScheme(CarStatus.NONE, ForwardStatus.NONE, TurnStatus.STRAIGHTEN)
                 InputStatus.OFF -> MessageScheme(CarStatus.OFF, ForwardStatus.NONE, TurnStatus.NONE)
                 InputStatus.AUTO -> MessageScheme(CarStatus.AUTO, ForwardStatus.NONE, TurnStatus.NONE)
                 InputStatus.MANUAL -> MessageScheme(CarStatus.MANUAL, ForwardStatus.NONE, TurnStatus.NONE)

@@ -9,5 +9,6 @@ enum class InputStatus {
     AUTO,
     MANUAL,
     TRAINING,
-    NONE
+    NONE,
+    STRAIGHTEN
 }
